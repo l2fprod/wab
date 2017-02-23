@@ -28,6 +28,7 @@ function UI (activationDB) {
   })
 
   this.fullBox = blessed.box({
+  const theme = require('./ui.theme.json');
     top: 0,
     left: 0,
     height: '100%-1',
@@ -57,7 +58,7 @@ function UI (activationDB) {
     width: '100%',
     left: 0,
     type: 'line',
-    fg: 'green'
+    style: theme.middleLine
   })
 
   this.statusBar = blessed.box({
@@ -66,7 +67,8 @@ function UI (activationDB) {
     height: 1,
     width: '100%',
     fg: 'white',
-    bg: 'blue'
+    bg: 'blue',
+    style: theme.statusBar
   })
 
   this.activationList = blessed.list({
@@ -74,15 +76,10 @@ function UI (activationDB) {
     left: 0,
     height: '100%',
     width: '100%',
-    style: {
-      selected: {
-        fg: 'white',
-        bg: 'green'
-      }
-    },
+    style: theme.activationList,
     keys: true,
     vi: true,
-    tags: true
+    tags: true,
   })
 
   this.activationPane = blessed.text({
@@ -93,7 +90,8 @@ function UI (activationDB) {
     scrollable: true,
     keys: true,
     vi: true,
-    tags: true
+    tags: true,
+    style: theme.activationPane
   })
 
   this.allActivations = []

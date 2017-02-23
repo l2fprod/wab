@@ -1,0 +1,28 @@
+{
+  "toolbar": {
+    "bg": "#00bcd4",
+    "fg": "white"
+  },
+  "middleLine": {
+    "bg": "#ffffff",
+    "fg": "#ffffff"
+  },
+  "activationList": {
+    "bg": "#f2f2f2",
+    "fg": "black",
+    "header": {
+      "bg": "#f2f2f2",
+      "fg": "black",
+      "bold": true
+    },
+    "selected": {
+      "bg": "#ffffff",
+      "fg": "black",
+      "bold": true
+    }
+  },
+  "activationPane": {
+    "bg": "#f2f2f2",
+    "fg": "black"    
+  }
+}
