@@ -88,6 +88,7 @@ function UI (activationDB) {
     height: '100%',
     width: '100%',
     scrollable: true,
+    alwaysScroll: true,
     keys: true,
     vi: true,
     tags: true,
@@ -119,7 +120,17 @@ function UI (activationDB) {
     self.loadActivation(self.activationList.selected)
   })
 
-  this.activationPane.key([ 'r' ], (ch, key) => {
+  this.activationList.key([ 'tab' ], (ch, key) => {
+    if (self.mode === 'DETAILS') {
+      this.activationPane.focus();
+    }
+  });
+
+  this.activationPane.key([ 'tab' ], (ch, key) => {
+    this.activationList.focus();
+  });
+
+  this.activationList.key([ 'r' ], (ch, key) => {
     if (self.activationResultMode === 'RESULT') {
       self.activationResultMode = 'FULL'
     } else {
@@ -232,7 +243,7 @@ UI.prototype.setDetailsMode = function () {
   this.screen.append(this.bottomHalfBox)
   this.screen.append(this.statusBar)
 
-  this.activationPane.focus()
+  this.activationList.focus()
 
   this.screen.render()
 
@@ -268,6 +279,10 @@ UI.prototype.loadActivation = function (id) {
 UI.prototype.showCurrentActivation = function () {
   let toDisplay = ''
 
+  if (!this.currentActivation) {
+    return;
+  }
+  
   if (this.activationResultMode === 'RESULT') {
     if (isRule(this.currentActivation)) {
       toDisplay = 'No {blue-fg}result{/blue-fg} to show for rule activations.'
