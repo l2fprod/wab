@@ -27,18 +27,31 @@ function UI (activationDB) {
     self.screen.render()
   })
 
-  this.fullBox = blessed.box({
   const theme = require('./ui.theme.json');
+
+  this.toolbar = blessed.box({
     top: 0,
     left: 0,
-    height: '100%-1',
-    width: '100%'
+    right: 0,
+    height: 3,
+    width: 'shrink',
+    content: '  {bold}My OpenWhisk Console{/bold}',
+    tags: true,
+    style: theme.toolbar,
+    valign: 'middle',
+  });
+
+  this.fullBox = blessed.box({
+    top: 3,
+    left: 0,
+    height: '100%-4',
+    width: '100%',
   })
 
   this.topHalfBox = blessed.box({
-    top: 0,
+    top: 3,
     left: 0,
-    height: '50%-1',
+    height: '50%-4',
     width: '100%',
     scrollable: false
   })
@@ -222,6 +235,7 @@ UI.prototype.setListMode = function () {
 
   this.fullBox.append(this.activationList)
 
+  this.screen.append(this.toolbar);
   this.screen.append(this.fullBox)
   this.screen.append(this.statusBar)
 
@@ -238,6 +252,7 @@ UI.prototype.setDetailsMode = function () {
   this.topHalfBox.append(this.activationList)
   this.bottomHalfBox.append(this.activationPane)
 
+  this.screen.append(this.toolbar);
   this.screen.append(this.topHalfBox)
   this.screen.append(this.middleLine)
   this.screen.append(this.bottomHalfBox)
