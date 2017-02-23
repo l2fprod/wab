@@ -152,7 +152,7 @@ function UI (activationDB) {
     self.showCurrentActivation()
   })
 
-  this.activationPane.key([ 'l' ], (ch, key) => {
+  this.activationList.key([ 'l' ], (ch, key) => {
     if (self.activationResultMode === 'LOGS') {
       self.activationResultMode = 'FULL'
     } else {
@@ -297,7 +297,7 @@ UI.prototype.showCurrentActivation = function () {
   if (!this.currentActivation) {
     return;
   }
-  
+
   if (this.activationResultMode === 'RESULT') {
     if (isRule(this.currentActivation)) {
       toDisplay = 'No {blue-fg}result{/blue-fg} to show for rule activations.'
